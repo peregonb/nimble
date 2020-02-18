@@ -1,0 +1,77 @@
+@font-face {
+  font-family: 'PT-Sans';
+  src: url('../fonts/PT-Sans-Regular.eot');
+  src: url('../fonts/PT-Sans-Regular.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/PT-Sans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT-Sans';
+  src: url('../fonts/PTSans-Regular.ttf') format('truetype'),
+       url('../fonts/PTSans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT-Sans';
+  src: url('../fonts/PT-Sans-Bold.eot');
+  src: url('../fonts/PT-Sans-Bold.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/PT-Sans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT-Sans';
+  src: url('../fonts/PTSans-Bold.ttf') format('truetype'),
+       url('../fonts/PTSans-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?dbr3bu');
+  src:  url('../fonts/icomoon.eot?dbr3bu#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?dbr3bu') format('truetype'),
+    url('../fonts/icomoon.woff?dbr3bu') format('woff'),
+    url('../fonts/icomoon.svg?dbr3bu#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  &:before{
+    font-family: 'icomoon' !important;
+  }
+}
+
+.icon-pause_circle_outline:before {
+  content: "\e900";
+}
+.icon-play_arrow:before {
+  content: "\e901";
+}
+.icon-play_circle_outline:before {
+  content: "\e902";
+}
+.icon-remove_circle_outline:before {
+  content: "\e903";
+}
+
+

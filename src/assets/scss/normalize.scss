@@ -151,6 +151,7 @@ textarea {
 
 button {
   overflow: visible;
+  border: none;
 }
 
 button,
@@ -252,8 +253,14 @@ textarea {
   backface-visibility: visible !important;
   font-weight: 400;
   box-sizing: border-box;
+  font-family: $pt;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 a{
   text-decoration: none;
 }
+*:focus {
+    outline: none;
+}
+

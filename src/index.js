@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/scss/App.scss';
+import App from "./App";
 
 
 ReactDOM.render(
-    <div>я родился!</div>,
+    <App/>,
     document.getElementById("root")
 );

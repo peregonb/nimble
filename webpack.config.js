@@ -9,7 +9,7 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.js$/,
+            test: /\.(js|jsx)$/,
             include: path.resolve(__dirname, 'src'),
             use: ['babel-loader']
         },
@@ -21,11 +21,18 @@ module.exports = {
                     {loader: "sass-loader"}
                 ]
             },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg|jpe?g|png|gif)(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]'
+                }
+            }
         ]
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
-        port: 1488
+        port: 9000
     },
     plugins: [
         new HtmlWebpackPlugin({
