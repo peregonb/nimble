@@ -1,0 +1,11 @@
+//mixins
+@mixin r($point) {
+  @media (max-width: $point + px) {
+    @content;
+  }
+}
+
+//vars
+$t: .3s;
+
+//colors
