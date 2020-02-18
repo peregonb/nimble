@@ -1,0 +1,9 @@
+# Compiled Output path
+dist
+
+#package manager
+node_modules
+
+#junk
+.idea
+.DS_Store
