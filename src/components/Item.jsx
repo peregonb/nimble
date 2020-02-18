@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
 import {useInterval} from "../utils/hooks/useInterval";
 
-const Item = (props) => {
-    const [count, setCount] = useState(props.countdown(props.startingTime));
+const Item = ({countdown, startingTime, title, deleteItem}) => {
+    const [count, setCount] = useState(countdown(startingTime));
 
     useInterval(() => {
-        setCount(props.countdown(props.startingTime));
+        setCount(countdown(startingTime));
     }, 1000);
 
     return (
         <div className="list-element active">
-            <div className="list-text">{props.title}</div>
+            <div className="list-text">{title}</div>
             <div className="list-text">{count}</div>
             <div className="list-play icon-play_circle_outline"/>
-            <div onClick={props.deleteItem} className="list-delete icon-remove_circle_outline"/>
+            <div onClick={deleteItem} className="list-delete icon-remove_circle_outline"/>
         </div>
     )
 };
