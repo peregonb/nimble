@@ -72,6 +72,7 @@ form {
     justify-content: center;
     margin-right: 2px;
     color: white;
+    font-size: 20px;
   }
 }
 
@@ -88,23 +89,31 @@ form {
     margin-bottom: 0;
   }
 
-  &-wrap {
+  span {
+    font-size: 16px;
+    font-weight: 700;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    height: 60px;
+    justify-content: center;
 
-    //&:hover {
-    //  .list-element {
-    //    &:first-child {
-    //      background: white;
-    //      transition: background $t;
-    //
-    //      .list-text {
-    //        color: black;
-    //        transition: color $t;
-    //      }
-    //    }
-    //  }
-    //}
+    br {
+      display: none;
+      @include r(400) {
+        display: block;
+      }
+    }
+
+    @include r(560) {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    img {
+      margin-left: 10px;
+      height: 30px;
+      width: 30px;
+    }
   }
 
   &-element {
@@ -123,7 +132,6 @@ form {
     &:last-child {
       border-bottom: 1px solid rgba(black, .2);
     }
-
 
 
     &.active {
@@ -178,5 +186,88 @@ form {
     color: #d2697a;
     margin-left: 10px;
     cursor: pointer;
+  }
+}
+
+.popup {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  display: flex;
+  background: rgba(0, 0, 0, .5);
+
+  &-modal {
+    position: absolute;
+    z-index: 6;
+    background: white;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    max-width: 320px;
+    transform: translate(-50%, -50%);
+    padding-top: 20px;
+  }
+
+  &-clickCapture {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 5;
+  }
+
+  &-text {
+    font-family: $pt;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  &-button {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    font-family: $pt;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: color $t, background-color $t;
+
+    &:hover {
+      color: white !important;
+      transition: color $t, background-color $t;
+    }
+
+    &:first-child {
+      color: #3faf6c;
+      background-color: rgba(#3faf6c, .15);
+
+      &:hover {
+        background-color: rgba(#3faf6c, .9);
+      }
+    }
+
+    &:last-child {
+      color: #d2697a;
+      background-color: rgba(#d2697a, .15);
+
+      &:hover {
+        background-color: rgba(#d2697a, .9);
+      }
+    }
   }
 }
