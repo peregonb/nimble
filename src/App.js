@@ -4,7 +4,10 @@ import Popup from "./components/Popup.jsx";
 import playImg from "./assets/img/play.svg";
 
 const App = () => {
-    let conditionItems = JSON.parse(localStorage.getItem('elements')).length
+    // let conditionItems = JSON.parse(localStorage.getItem('elements')).length
+    //     ? JSON.parse(localStorage.getItem('elements')) : [];
+
+    let conditionItems = JSON.parse(localStorage.getItem('elements'))
         ? JSON.parse(localStorage.getItem('elements')) : [];
 
     const [items, setItems] = useState(conditionItems);
@@ -22,7 +25,8 @@ const App = () => {
                 startingTime: Date.now(),
                 isRunning: true,
                 resumeTime: 0,
-                distance: 0
+                distance: 0,
+                finalTime: [0]
             },
             ...prev
         ]);
@@ -37,21 +41,28 @@ const App = () => {
         }
     };
 
-    const countdownUpdate = (countDownDate, finalTime) => {
-        let now = Date.now(),
-            distance = now - countDownDate, fullDistance = distance;
-
-        if (finalTime) {
-            fullDistance = finalTime.reduce((a, b) => a + b) + distance
-        }
-        let hours = Math.floor((fullDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-            minutes = Math.floor((fullDistance % (1000 * 60 * 60)) / (1000 * 60)),
-            seconds = Math.floor((fullDistance % (1000 * 60)) / 1000);
+    const msToTime = (num) => {
+        let hours = Math.floor((num % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+            minutes = Math.floor((num % (1000 * 60 * 60)) / (1000 * 60)),
+            seconds = Math.floor((num % (1000 * 60)) / 1000);
 
         const wrapZeros = num => num < 10 ? "0" + num : num;
+        return  wrapZeros(hours) + ":" + wrapZeros(minutes) + ":" + wrapZeros(seconds)
+    };
+
+    const countdownUpdate = (countDownDate, finalTime, isRunning) => {
+        let now = Date.now(),
+            distance = now - countDownDate,
+            fullDistance = distance;
+
+        if (finalTime && isRunning) {
+            fullDistance = finalTime.reduce((a, b) => a + b) + distance;
+        } else if (finalTime && !isRunning) {
+            fullDistance = finalTime.reduce((a, b) => a + b)
+        }
         return {
-            time: wrapZeros(hours) + ":" + wrapZeros(minutes) + ":" + wrapZeros(seconds),
-            distance
+            time: msToTime(fullDistance),
+            fullDistance
         };
     };
 
@@ -69,13 +80,17 @@ const App = () => {
     const playClick = (id) => {
         setItems(prev => prev.map(el => {
             return el.isRunning === true ?
-                el.id === id ? {...el, isRunning: false, distance: countdownUpdate(el.startingTime).distance} : el
+                el.id === id ? {
+                    ...el,
+                    isRunning: false,
+                    distance: countdownUpdate(el.startingTime).fullDistance,
+                    finalTime: el.finalTime.concat([countdownUpdate(el.startingTime).fullDistance])
+                } : el
                 : el.id === id ? {
                     ...el,
                     isRunning: true,
                     resumeTime: Date.now(),
                     startingTime: Date.now(),
-                    finalTime: el.finalTime.concat([el.distance])
                 } : el;
         }))
     };
@@ -110,9 +125,10 @@ const App = () => {
                     storedItems.map(i => <Item key={i.id}
                                                title={i.title}
                                                isRunning={i.isRunning}
-                                               countdown={() => countdownUpdate(i.startingTime, i.finalTime)}
+                                               countdown={() => countdownUpdate(i.startingTime, i.finalTime, i.isRunning)}
                                                triggerPopup={() => triggerPopup(i.id)}
                                                playClick={() => playClick(i.id)}
+
                     />)
                 }
             </div>
