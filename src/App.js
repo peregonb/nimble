@@ -103,7 +103,6 @@ const App = () => {
     useEffect(() => {
         localStorage.setItem('elements', JSON.stringify(items));
         setStoredItems(JSON.parse(localStorage.getItem('elements')));
-        console.table(items)
     }, [items]);
 
 
