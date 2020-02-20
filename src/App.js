@@ -2,11 +2,9 @@ import React, {useEffect, useRef, useState} from 'react';
 import Item from "./components/Item.jsx";
 import Popup from "./components/Popup.jsx";
 import playImg from "./assets/img/play.svg";
+import Form from "./components/Form.jsx";
 
 const App = () => {
-    // let conditionItems = JSON.parse(localStorage.getItem('elements')).length
-    //     ? JSON.parse(localStorage.getItem('elements')) : [];
-
     let conditionItems = JSON.parse(localStorage.getItem('elements'))
         ? JSON.parse(localStorage.getItem('elements')) : [];
 
@@ -47,7 +45,7 @@ const App = () => {
             seconds = Math.floor((num % (1000 * 60)) / 1000);
 
         const wrapZeros = num => num < 10 ? "0" + num : num;
-        return  wrapZeros(hours) + ":" + wrapZeros(minutes) + ":" + wrapZeros(seconds)
+        return wrapZeros(hours) + ":" + wrapZeros(minutes) + ":" + wrapZeros(seconds)
     };
 
     const countdownUpdate = (countDownDate, finalTime, isRunning) => {
@@ -112,13 +110,7 @@ const App = () => {
     return (
         <div className="wrap">
             <div className="headline">tracker</div>
-            <form onSubmit={e => {
-                addItem;
-                e.preventDefault();
-            }}>
-                <input ref={input} type="text" placeholder="Enter tracker name"/>
-                <button onClick={clickHandler} className="icon-play_arrow"/>
-            </form>
+            <Form addItem={addItem} input={input} clickHandler={clickHandler}/>
             <div className="list">
                 {!storedItems || !storedItems.length ?
                     <span>Чтоб начать введите <br/> название записи и нажмите <img src={playImg} alt="play"/> </span> :
