@@ -1,12 +1,16 @@
 {
-  "name": "react-setup-from-scratch",
+  "homepage": "https://peregonb.github.io/nimble/",
+  "name": "nimble",
   "scripts": {
     "serve": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "css-loader": "^3.4.2",
+    "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
