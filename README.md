@@ -1,6 +1,8 @@
-# Nimble Test Task
+# React-TimeTracker
 
-[Просмотреть можно тут](https://peregonb.github.io/nimble/)
+Трекер времени написан на React + Hooks
+
+[Просмотреть можно тут](https://peregonb.github.io/React-TimeTracker/)
 
 ![Alt Text](./docs/demo.gif)
 
